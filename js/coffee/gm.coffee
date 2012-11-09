@@ -16,7 +16,8 @@ $ ->
 			current_offset = 0
 			url = "/search?type=location&center=#{lat},#{lng}&distance=#{r}&limit=25&offset="
 			handle_response = (response) ->
-				console.log(response)
+				console.log("test:"+ current_offset)
+				console.log(response.paging + ":" + (current_offset / per_page))
 				current_offset = current_offset + per_page
 				if response.paging && (current_offset / per_page) < 5
 					FB.api(url + current_offset, handle_response)
@@ -27,7 +28,6 @@ $ ->
 				FB.api(url + current_offset, handle_response)
 		addMarker : (item) ->
 			myLatlng = new google.maps.LatLng(item.place.location.latitude,item.place.location.longitude)
-			#contentString = "<div>#{item.place.name}:#{item.from.name}</div><div><img src='https://graph.facebook.com/#{item.from.id}/picture'></div>"
 			marker = new google.maps.Marker(
       						position: myLatlng
       						map: current.map 

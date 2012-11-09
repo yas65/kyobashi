@@ -25,7 +25,8 @@
           url = "/search?type=location&center=" + lat + "," + lng + "&distance=" + r + "&limit=25&offset=";
           handle_response = function(response) {
             var item, _i, _len, _ref, _results;
-            console.log(response);
+            console.log("test:" + current_offset);
+            console.log(response.paging + ":" + (current_offset / per_page));
             current_offset = current_offset + per_page;
             if (response.paging && (current_offset / per_page) < 5) {
               FB.api(url + current_offset, handle_response);
